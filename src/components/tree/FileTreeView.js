@@ -23,13 +23,13 @@ let treeExample = {
             '*size':100,
             'gestion del almacén.doc':{
                 '*path':'c/myfiles/procesos de logistica/gestion del almacén.doc',
-                '*type':'directory',
+                '*type':'file',
                 '*name':'gestion del almacén.doc',
                 '*size':100,
             },
             'inventario de salida.xls':{
                 '*path':'c/myfiles/procesos de logistica/inventario de salida.xls',
-                '*type':'directory',
+                '*type':'file',
                 '*name':'inventario de salida.xls',
                 '*size':100,
             }

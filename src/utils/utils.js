@@ -1,3 +1,4 @@
+import { FILE_IMG_EXTENSIONS } from "./config";
 
 //return keys of array excluding some of them.
 export const objectKeys = (obj, excludedArray) =>{
@@ -15,4 +16,14 @@ export const objectKeys = (obj, excludedArray) =>{
     }catch(err){
         return []
     }
+}
+
+//is file an image or txt.
+export const isFileImgOrTxt = (fileExtension) =>{
+    if(!fileExtension) return null;
+    if(fileExtension.indexOf(FILE_IMG_EXTENSIONS)!==-1){
+        return 'img'
+    }
+    if(fileExtension==='txt') return 'txt';
+    return null;
 }

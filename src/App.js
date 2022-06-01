@@ -6,6 +6,7 @@ import TreeItem from '@mui/lab/TreeItem';
 
 import Layout from './components/common/Layout';
 import FileTreeView from './components/tree/FileTreeView';
+import FilePreview from './components/tree/FilePreview';
 
 
 function App() {
