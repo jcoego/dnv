@@ -18,7 +18,6 @@ function App() {
           </TreeItem>
         </TreeItem>
       </TreeView>
-
     </Layout>
   );
 }
