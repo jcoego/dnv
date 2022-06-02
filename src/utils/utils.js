@@ -27,3 +27,9 @@ export const isFileImgOrTxt = (fileExtension) =>{
     if(fileExtension==='txt') return 'txt';
     return null;
 }
+
+//download file
+export const downloadFile = (url) =>{
+    if(!url) return;
+    window.open(url);
+}

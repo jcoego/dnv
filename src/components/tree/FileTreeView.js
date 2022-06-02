@@ -43,18 +43,22 @@ let treeExample = {
     }
 }
 
-const FileTreeView = ({tree=treeExample, ...props}) =>{
+const FileTreeView = ({tree=treeExample, onClick=()=>{}, ...props}) =>{
     if(!tree) return null;
     const renderTree = (nodes) =>{
          debugger
          let nodesK= objectKeys(nodes,COMMON_FIELDS);
          console.log('nodesK',nodesK)
         return (
-            <TreeItem key={nodes['*path']} nodeId={nodes['*path']} label={nodes['*name']}>
-            {objectKeys(nodes,COMMON_FIELDS).length > 0
-                ? objectKeys(nodes,COMMON_FIELDS).map((nodekey) => renderTree(nodes[nodekey]))
-                : null
-            }
+            <TreeItem key={nodes['*path']} 
+              nodeId={nodes['*path']} 
+              label={nodes['*name']}
+              onClick={e => onClick(nodes)}>
+
+              {objectKeys(nodes,COMMON_FIELDS).length > 0
+                  ? objectKeys(nodes,COMMON_FIELDS).map((nodekey) => renderTree(nodes[nodekey]))
+                  : null
+              }
             </TreeItem>
         );
     }

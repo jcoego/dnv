@@ -3,20 +3,20 @@ import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 
 import { isFileImgOrTxt } from "../../utils/utils";
 
-const PeviewFileNotImgNotTxt = ({url='', fileName='', size='', type='', onClick=()=>{}}) =>{
+const PeviewFileNotImgNotTxt = ({url='', fileName='', size='', type='', path='', onClick=()=>{}}) =>{
     return (
         <div>
             {
                 type==='directory' ? 
                 (<div>
-                    <h2>{fileName}</h2>
+                    <h2>{path}</h2>
                     <h3>{`size ${size} MB`}</h3>
                 </div>) : 
                 (
                 <div>
-                    <h2>{fileName}</h2>
+                    <h2>{path}</h2>
                     <h3>{`size ${size} MB`}</h3>
-                    <Button onClick={e => onClick(e)} variant="outlined" startIcon={<DownloadForOfflineIcon />}>
+                    <Button onClick={e => onClick(url)} variant="outlined" startIcon={<DownloadForOfflineIcon />}>
                        download
                     </Button>
                 </div>
@@ -28,12 +28,13 @@ const PeviewFileNotImgNotTxt = ({url='', fileName='', size='', type='', onClick=
     )
 }
 
-const previewImage = ({url='', fileName='', size='', type='', onClick=()=>{}}) =>{
+const previewImage = ({url='', fileName='', size='', type='',path='', onClick=()=>{}}) =>{
     return (
-        <div>
+        <div> 
+            <h2>{path}</h2>
             <img src={url} alt={fileName} />
             <div>{`size: ${size} MB`}</div>
-            <Button onClick={e => onClick(e)} variant="outlined" startIcon={<DownloadForOfflineIcon />}>
+            <Button onClick={e => onClick(url)} variant="outlined" startIcon={<DownloadForOfflineIcon />}>
                 download
             </Button>
         </div>
@@ -41,26 +42,30 @@ const previewImage = ({url='', fileName='', size='', type='', onClick=()=>{}}) =
 }
 
 
-const FilePreview = ({url='',fileName='', size='',type='', onClick=()=>{}, ...props}) =>{
+const FilePreview = ({url='',fileName='', size='',type='',path='', onClick=()=>{}, ...props}) =>{
     let extensionFile = fileName ? fileName.split('.').pop() : '';
     let fileType =  isFileImgOrTxt(extensionFile);
+
+    if(!fileName) return null;
    
     if (fileType==='img'){
       return <previewImage 
+        path={path}
         url={url} 
         fileName={fileName} 
         size={size} 
         type={type} 
-        onClick={()=>{}} 
+        onClick={(url)=>onClick(url)} 
       />
     }
 
     return (<PeviewFileNotImgNotTxt 
+      path={path}
       url={url} 
       fileName={fileName} 
       size={size} 
       type={type} 
-      onClick={()=>{}} 
+      onClick={(url)=>onClick(url)} 
     />)
 
 }
