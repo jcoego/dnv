@@ -6,6 +6,7 @@ import TreeItem from '@mui/lab/TreeItem';
 import { objectKeys } from "../../utils/utils";
 import { COMMON_FIELDS } from '../../utils/config';
 
+//TODO: Delete treeExample
 let treeExample = {
     '*path':'c',
     '*type':'directory',
@@ -46,7 +47,6 @@ let treeExample = {
 const FileTreeView = ({tree=treeExample, onClick=()=>{}, ...props}) =>{
     if(!tree) return null;
     const renderTree = (nodes) =>{
-         debugger
          let nodesK= objectKeys(nodes,COMMON_FIELDS);
          console.log('nodesK',nodesK)
         return (
@@ -64,7 +64,9 @@ const FileTreeView = ({tree=treeExample, onClick=()=>{}, ...props}) =>{
     }
 
     return <div>
-        <TreeView>
+        <TreeView
+         
+        >
             {renderTree(tree)}
         </TreeView>
     </div>
