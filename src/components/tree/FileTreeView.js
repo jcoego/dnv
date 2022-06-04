@@ -44,16 +44,25 @@ let treeExample = {
     }
 }
 
+const LabelSelectedDocument = ({selected, path, name}) =>{
+  if(selected===path){
+    return <strong>{name}</strong>
+  }
+  return name;
+}
+
 const FileTreeView = ({tree, onClick=()=>{}, 
     onNodeToggle=()=>{},expanded=[],
     selected='', 
     ...props}) =>{
     if(!tree) return null;
     const renderTree = (nodes) =>{
+      
         return (
             <TreeItem key={nodes['*path']} 
               nodeId={nodes['*path']} 
-              label={nodes['*name']}
+              //label={selected === nodes['*path'] ? <strong>{nodes['*name']}</strong> : nodes['*name']}
+              label = {<LabelSelectedDocument selected={selected} path={nodes['*path'] } name={nodes['*name']} />}
               onClick={e => onClick(nodes)}>
 
               {objectKeys(nodes,COMMON_FIELDS).length > 0
@@ -64,12 +73,15 @@ const FileTreeView = ({tree, onClick=()=>{},
         );
     }
 
+    console.log('selected',selected)
     return <div>
         <TreeView
           selected={[selected]}
           onNodeToggle={onNodeToggle}
          
-          expanded={expanded} /* 
+          expanded={expanded} 
+          onNodeSelect={(e,nodeIds)=> console.log('nodeIds',nodeIds)}
+          /* 
           onNodeSelect={handleSelect} */
         >
             {renderTree(tree)}

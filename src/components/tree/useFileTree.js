@@ -38,7 +38,7 @@ let treeExample = {
   }
 
 const useFileTree = ()=>{
-    let [selectedNode, setSelectedNode] = useState({});
+    let [selectedNode, setSelectedNode] = useState('');
     let [tree,setTree] = useState(treeExample);
     let [expanded, setExpanded] = useState([]);
 
