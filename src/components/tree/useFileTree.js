@@ -47,8 +47,10 @@ const useFileTree = ()=>{
         setExpanded(nodeIds)
     }
 
+   
 
-    return[selectedNode, setSelectedNode, tree, setTree, onNodeToggle, expanded]
+
+    return[selectedNode, setSelectedNode, tree, setTree, onNodeToggle, expanded, setExpanded]
 
 }
 

@@ -46,7 +46,6 @@ let treeExample = {
 
 const FileTreeView = ({tree, onClick=()=>{}, 
     onNodeToggle=()=>{},expanded=[],
-    onNodeSelect=()=>{},
     selected='', 
     ...props}) =>{
     if(!tree) return null;
@@ -71,7 +70,6 @@ const FileTreeView = ({tree, onClick=()=>{},
           onNodeToggle={onNodeToggle}
          
           expanded={expanded} /* 
-          onNodeToggle={handleToggle}
           onNodeSelect={handleSelect} */
         >
             {renderTree(tree)}

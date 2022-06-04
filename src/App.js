@@ -15,19 +15,21 @@ import {downloadFile}  from './utils/utils';
 
 function App() {
 
-  let [selectedNode, setSelectedNode,tree, setTree, onNodeToggle, expanded] = useFileTree();
+  let [selectedNode, setSelectedNode,tree, setTree, onNodeToggle, expanded, setExpanded] = useFileTree();
 
  
   
 
   return (
     <Layout>
-      <FileTreeView onNodeToggle={onNodeToggle} expanded={expanded} selected={selectedNode['*id']} tree={tree} onClick={node => {       
-          /*   if(node['*path']==='c/documents'){
+      <FileTreeView 
+        onNodeToggle={onNodeToggle} expanded={expanded} 
+        selected={selectedNode['*id']} tree={tree} onClick={node => {       
+            if(node['*path']==='c/documents'){
               let newTree = {...tree};
               newTree['documents']={
                 ...newTree['documents'],
-                'videos':{
+                'videos':{ 
                   '*path':'c/documents/videos',
                   '*type':'directory',
                   '*name':'videos',
@@ -36,9 +38,11 @@ function App() {
               }
               setTree(newTree);
               setSelectedNode(node);
+            
+              setExpanded([...expanded,node['*path']])
               return
              
-            } */
+            }
             setSelectedNode(node);
           }
         }
