@@ -44,11 +44,9 @@ let treeExample = {
     }
 }
 
-const FileTreeView = ({tree=treeExample, onClick=()=>{}, ...props}) =>{
+const FileTreeView = ({tree, onClick=()=>{}, selected='', ...props}) =>{
     if(!tree) return null;
     const renderTree = (nodes) =>{
-         let nodesK= objectKeys(nodes,COMMON_FIELDS);
-         console.log('nodesK',nodesK)
         return (
             <TreeItem key={nodes['*path']} 
               nodeId={nodes['*path']} 
@@ -65,7 +63,7 @@ const FileTreeView = ({tree=treeExample, onClick=()=>{}, ...props}) =>{
 
     return <div>
         <TreeView
-         
+         selected={[selected]}
         >
             {renderTree(tree)}
         </TreeView>
