@@ -24,7 +24,7 @@ function App() {
     <Layout>
       <FileTreeView 
         onNodeToggle={onNodeToggle} expanded={expanded} 
-        selected={selectedNode['*id']} tree={tree} onClick={node => {       
+        selected={selectedNode} tree={tree} onClick={node => {       
             if(node['*path']==='c/documents'){
               let newTree = {...tree};
               newTree['documents']={
@@ -37,7 +37,7 @@ function App() {
                 }
               }
               setTree(newTree);
-              setSelectedNode(node);
+              setSelectedNode(node['*path']);
             
               setExpanded([...expanded,node['*path']])
               return
