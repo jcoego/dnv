@@ -15,14 +15,14 @@ import {downloadFile}  from './utils/utils';
 
 function App() {
 
-  let [selectedNode, setSelectedNode,tree, setTree] = useFileTree();
+  let [selectedNode, setSelectedNode,tree, setTree, onNodeToggle, expanded] = useFileTree();
 
  
   
 
   return (
     <Layout>
-      <FileTreeView selected={selectedNode['*id']} tree={tree} onClick={node => {       
+      <FileTreeView onNodeToggle={onNodeToggle} expanded={expanded} selected={selectedNode['*id']} tree={tree} onClick={node => {       
           /*   if(node['*path']==='c/documents'){
               let newTree = {...tree};
               newTree['documents']={
