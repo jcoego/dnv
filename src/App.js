@@ -10,6 +10,7 @@ import TreeSearcher from './components/tree/TreeSearcher';
 import FilePreview from './components/tree/FilePreview';
 import useFileTree from './components/tree/useFileTree';
 import Separator from './components/common/Separator';
+import Loading from './components/common/Loading';
 
 import {downloadFile, insertNodeInTree}  from './utils/utils';
 
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <Layout>
+      <Loading open={true} />
       <TreeSearcher 
         onChange={e => onChangeSearchField(e.target.value)}
         value={searchField}

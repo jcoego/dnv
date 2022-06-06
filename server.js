@@ -3,16 +3,23 @@ const app = express()
 const port = 8000
 const data = require('./data/data.json');
 const _ = require('lodash');
+const { rest } = require('lodash');
 
 app.get('/', (req, res) => {
-  console.log(req.query['path'])
-  let path = req.query['path'] ? req.query['path'] : '/';
-  path = path.replace('/','')
-  path = path.replace(/[/]/g,'.');
+  try{
+    console.log(req.query['path'])
+    let path = req.query['path'] ? req.query['path'] : '/';
+    path = path.replace('/','')
+    path = path.replace(/[/]/g,'.');
 
-  let dataRes = path ?  _.get(data, path) : data;
-  //let dataRes =  _.get(data,'myfiles.procesos de logistica');
-  res.status(200).json(dataRes);
+    let dataRes = path ?  _.get(data, path) : data;
+    console.log('dataRes',dataRes);
+    //let dataRes =  _.get(data,'myfiles.procesos de logistica');
+    res.status(200).json(dataRes);
+  }catch(err){
+    //TODO: function to proccess error in a centralized way (send them to log...etc.)
+    rest.status(500).json({message: 'Unexpected error'})
+  }
 })
 
 app.listen(port, () => {
