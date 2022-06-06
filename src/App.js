@@ -10,7 +10,7 @@ import FilePreview from './components/tree/FilePreview';
 import useFileTree from './components/tree/useFileTree';
 import Separator from './components/common/Separator';
 
-import {downloadFile}  from './utils/utils';
+import {downloadFile, insertNodeInTree}  from './utils/utils';
 
 
 function App() {
@@ -28,7 +28,14 @@ function App() {
            
             if(node['*path']==='c/documents'){
              
-              let newTree = {...tree};
+            let newTree =   insertNodeInTree(tree,{'videos':{ 
+              '*path':'c/documents/videos',
+              '*type':'directory',
+              '*name':'videos',
+              '*size':110,
+            }},'c/documents');
+
+             /*  let newTree = {...tree};
               newTree['documents']={
                 ...newTree['documents'],
                 'videos':{ 
@@ -37,7 +44,7 @@ function App() {
                   '*name':'videos',
                   '*size':110,
                 }
-              }
+              } */
               setTree(newTree);
               setSelectedNode(node);
             

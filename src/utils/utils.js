@@ -1,3 +1,5 @@
+import { treeViewClasses } from '@mui/lab/TreeView';
+import _ from 'lodash';
 import { FILE_IMG_EXTENSIONS } from "./config";
 
 //return keys of array excluding some of them.
@@ -32,4 +34,19 @@ export const isFileImgOrTxt = (fileExtension) =>{
 export const downloadFile = (url) =>{
     if(!url) return;
     window.open(url);
+}
+
+//insert node inside the tree
+export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
+    try{
+        let pathItems = path.split('/')
+        pathItems=pathItems.slice(1,pathItems.length).join('.');
+        let currentNodeValue= _.get(tree,pathItems)
+        let treeRes = _.set(tree,pathItems,{...newNode,...currentNodeValue});
+        debugger
+        return treeRes;
+    }catch(err){
+        return tree;
+    }
+
 }
