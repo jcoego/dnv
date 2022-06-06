@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 import {getServerUrl}  from '../../utils/config';
+import {insertNodeInTree} from '../../utils/utils'
 
 let treeExample = {
     '*path':'c',
@@ -77,13 +78,14 @@ const useFileTree = ()=>{
     const onClickSearch = async ()=>{
         //TODO: Validation if necessary.
         try{
-            debugger
+            
             setQueryState(prevState => ({...prevState,loading:true}))
             let dataFromServer=null; 
+           
             dataFromServer = await axios.get(`${getServerUrl()}?path=${searchField ? searchField : '/'}`);
             
             setQueryState(prevState => 
-                ({...prevState,error:null,result:dataFromServer ? dataFromServer.data : ''}))
+                ({...prevState,error:null, result:dataFromServer ? dataFromServer.data : ''}))
             
             setTree(dataFromServer ? dataFromServer.data : '')
         }catch(err){
@@ -96,13 +98,35 @@ const useFileTree = ()=>{
 
     }
 
+    const onClickSearchNode = async (node)=>{
+        
+    
+          
+            let path = node['*path'];
+           
+            let dataFromServer=null; 
+            
+            dataFromServer = await axios.get(`${getServerUrl()}?path=${path}`);
+            
+          /*   setQueryState(prevState => 
+                ({...prevState,error:null, result:dataFromServer ? dataFromServer.data : ''})) */
+
+            
+            let newTree= insertNodeInTree(tree, dataFromServer.data,node['*path'])
+            
+            setTree(newTree);
+            setSelectedNode(node);
+            setExpanded([...expanded,node['*path']])
+       
+    }
+
    
 
 
     return[selectedNode, setSelectedNode, 
         tree, setTree, onNodeToggle, 
         expanded, setExpanded,
-        onChangeSearchField, searchField, onClickSearch, queryState
+        onChangeSearchField, searchField, onClickSearch, queryState, onClickSearchNode
     ]
 
 }

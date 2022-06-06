@@ -20,7 +20,7 @@ function App() {
   let [selectedNode, setSelectedNode,
     tree, setTree, 
     onNodeToggle, expanded, setExpanded,
-    onChangeSearchField,searchField,  onClickSearch, queryState
+    onChangeSearchField,searchField,  onClickSearch, queryState, onClickSearchNode
   ] = useFileTree();
 
   console.log('tree',tree)
@@ -37,27 +37,19 @@ function App() {
       <Separator />
       <FileTreeView 
         onNodeToggle={onNodeToggle} expanded={expanded} 
-        selected={selectedNode['*path']} tree={tree} onClick={node => {  
-           
+        selected={selectedNode['*path']} tree={tree} onClick={node => onClickSearchNode(node) /* {  
+         
+       
             if(node['*path']==='c/documents'){
              
-            let newTree =   insertNodeInTree(tree,{'videos':{ 
-              '*path':'c/documents/videos',
-              '*type':'directory',
-              '*name':'videos',
-              '*size':110,
-            }},'c/documents');
+              let newTree =   insertNodeInTree(tree,{'videos':{ 
+                '*path':'c/documents/videos',
+                '*type':'directory',
+                '*name':'videos',
+                '*size':110,
+              }},'c/documents');
 
-             /*  let newTree = {...tree};
-              newTree['documents']={
-                ...newTree['documents'],
-                'videos':{ 
-                  '*path':'c/documents/videos',
-                  '*type':'directory',
-                  '*name':'videos',
-                  '*size':110,
-                }
-              } */
+            
               setTree(newTree);
               setSelectedNode(node);
             
@@ -67,7 +59,7 @@ function App() {
             }else{
               setSelectedNode(node);
             }
-          }
+          } */
         }
         />
       <Separator />

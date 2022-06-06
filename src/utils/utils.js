@@ -39,10 +39,12 @@ export const downloadFile = (url) =>{
 //insert node inside the tree
 export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
     try{
+        debugger
         let pathItems = path.split('/')
         pathItems=pathItems.slice(1,pathItems.length).join('.');
         let currentNodeValue= _.get(tree,pathItems)
-        let treeRes = _.set(tree,pathItems,{...newNode,...currentNodeValue});
+        let treeRes = pathItems ? _.set(tree,pathItems,{...newNode,...currentNodeValue}) : newNode;
+        console.log('treeRes',treeRes)
         return treeRes;
     }catch(err){
         return tree;
