@@ -75,13 +75,17 @@ const useFileTree = ()=>{
     }
 
     const onClickSearch = async ()=>{
-        //TODO: Validation
+        //TODO: Validation if necessary.
         try{
+            debugger
             setQueryState(prevState => ({...prevState,loading:true}))
             let dataFromServer=null; 
-            dataFromServer = await axios.get(`${getServerUrl()}?path${searchField ? searchField : '/'}`);
+            dataFromServer = await axios.get(`${getServerUrl()}?path=${searchField ? searchField : '/'}`);
+            
             setQueryState(prevState => 
-                ({...prevState,error:null,result:dataFromServer}))
+                ({...prevState,error:null,result:dataFromServer ? dataFromServer.data : ''}))
+            
+            setTree(dataFromServer ? dataFromServer.data : '')
         }catch(err){
             setQueryState(prevState => 
                 ({...prevState,error:err.message ? err.message : 'Error retrieving data',result:null}))

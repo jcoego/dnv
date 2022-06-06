@@ -5,9 +5,10 @@ import Button from '@mui/material/Button';
 import ArticleIcon from '@mui/icons-material/Article';
 import Title from '../common/Title';
 import { borderRadius } from '@mui/system';
+import Feedback from '../common/Feedback';
 
 
-const TreeSearcher = ({onChange=()=>{},value='', onClick=()=>{}, ...props}) =>{
+const TreeSearcher = ({onChange=()=>{},value='', onClick=()=>{}, error='', ...props}) =>{
     return <Box
             sx={{
                 background: '#efe5e5',
@@ -27,6 +28,7 @@ const TreeSearcher = ({onChange=()=>{},value='', onClick=()=>{}, ...props}) =>{
         <Button onClick={e => onClick(e)} variant="contained" startIcon={<ArticleIcon />}>
             Search directory
         </Button>
+       
    </Box>
 }
 

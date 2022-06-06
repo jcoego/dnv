@@ -3,7 +3,9 @@ const app = express()
 const port = 8000
 const data = require('./data/data.json');
 const _ = require('lodash');
-const { rest } = require('lodash');
+const cors = require('cors');
+
+app.use(cors());
 
 app.get('/', (req, res) => {
   try{
@@ -15,10 +17,10 @@ app.get('/', (req, res) => {
     let dataRes = path ?  _.get(data, path) : data;
     console.log('dataRes',dataRes);
     //let dataRes =  _.get(data,'myfiles.procesos de logistica');
-    res.status(200).json(dataRes);
+    return res.status(200).json(dataRes);
   }catch(err){
     //TODO: function to proccess error in a centralized way (send them to log...etc.)
-    rest.status(500).json({message: 'Unexpected error'})
+    res.status(500).json({message: 'Unexpected error'})
   }
 })
 

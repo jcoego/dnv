@@ -23,13 +23,16 @@ function App() {
     onChangeSearchField,searchField,  onClickSearch, queryState
   ] = useFileTree();
 
+  console.log('tree',tree)
+
   return (
     <Layout>
-      <Loading open={true} />
+      <Loading open={queryState.loading} />
       <TreeSearcher 
         onChange={e => onChangeSearchField(e.target.value)}
         value={searchField}
         onClick={(e)=>onClickSearch()}
+        error={queryState.error}
       />
       <Separator />
       <FileTreeView 
