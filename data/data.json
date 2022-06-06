@@ -1,7 +1,7 @@
 {
-    "*path":"",
+    "*path":"/",
     "*type":"directory",
-    "*name":"",
+    "*name":"/",
     "*size":100,
     "myfiles":{
         "*path":"/myfiles",
