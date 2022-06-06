@@ -23,7 +23,7 @@ export const objectKeys = (obj, excludedArray) =>{
 //is file an image or txt.
 export const isFileImgOrTxt = (fileExtension) =>{
     if(!fileExtension) return null;
-    if(fileExtension.indexOf(FILE_IMG_EXTENSIONS)!==-1){
+    if(FILE_IMG_EXTENSIONS.indexOf(fileExtension)!==-1){
         return 'img'
     }
     if(fileExtension==='txt') return 'txt';

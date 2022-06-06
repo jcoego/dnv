@@ -28,11 +28,11 @@ const PeviewFileNotImgNotTxt = ({url='', fileName='', size='', type='', path='',
     )
 }
 
-const previewImage = ({url='', fileName='', size='', type='',path='', onClick=()=>{}}) =>{
+const PreviewImage = ({url='', fileName='', size='', type='',path='', onClick=()=>{}}) =>{
     return (
         <div> 
             <h2>{path}</h2>
-            <img src={url} alt={fileName} />
+            <img src={url}  height={'200px'} alt={fileName} />
             <div>{`size: ${size} MB`}</div>
             <Button onClick={e => onClick(url)} variant="outlined" startIcon={<DownloadForOfflineIcon />}>
                 download
@@ -41,15 +41,45 @@ const previewImage = ({url='', fileName='', size='', type='',path='', onClick=()
     )
 }
 
+const PreviewText = ({url='', fileName='', size='', type='',path='', onClick=()=>{}}) =>{
+  return (
+      <div> 
+          <h2>{path}</h2>
+         
+          <object data={url} height="200px">
+            <iframe src={url} frameborder="0" height="200px"
+            ></iframe>
+          </object>
+          <div>{`size: ${size} MB`}</div>
+          <Button onClick={e => onClick(url)} variant="outlined" startIcon={<DownloadForOfflineIcon />}>
+              download
+          </Button>
+      </div>
+  )
+}
+
 
 const FilePreview = ({url='',fileName='', size='',type='',path='', onClick=()=>{}, ...props}) =>{
     let extensionFile = fileName ? fileName.split('.').pop() : '';
+   
     let fileType =  isFileImgOrTxt(extensionFile);
+   
 
     if(!fileName) return null;
    
     if (fileType==='img'){
-      return <previewImage 
+      return <PreviewImage 
+        path={path}
+        url={url} 
+        fileName={fileName} 
+        size={size} 
+        type={type} 
+        onClick={(url)=>onClick(url)} 
+      />
+    }
+
+    if (fileType==='txt'){
+      return <PreviewText 
         path={path}
         url={url} 
         fileName={fileName} 

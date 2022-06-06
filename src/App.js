@@ -65,9 +65,7 @@ function App() {
         type={selectedNode ? selectedNode['*type'] : ''} 
         onClick={(url)=> downloadFile(url)} 
         />
-        <button onClick={e =>{
-         
-        }}>Add data</button>
+      
     </Layout>
   );
 }
