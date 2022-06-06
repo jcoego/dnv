@@ -19,7 +19,7 @@ function App() {
   let [selectedNode, setSelectedNode,
     tree, setTree, 
     onNodeToggle, expanded, setExpanded,
-    onChangeSearchField,searchField
+    onChangeSearchField,searchField,  onClickSearch, queryState
   ] = useFileTree();
 
   return (
@@ -27,7 +27,7 @@ function App() {
       <TreeSearcher 
         onChange={e => onChangeSearchField(e.target.value)}
         value={searchField}
-        onClick={()=>{}}
+        onClick={(e)=>onClickSearch()}
       />
       <Separator />
       <FileTreeView 

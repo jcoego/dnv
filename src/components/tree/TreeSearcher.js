@@ -21,7 +21,7 @@ const TreeSearcher = ({onChange=()=>{},value='', onClick=()=>{}, ...props}) =>{
             onChange={data=>onChange(data)} 
             value={value} 
             id="outlined-basic" 
-            label="Introduce directory" 
+            label="Introduce directory (*)" 
             variant="outlined" 
         />
         <Button onClick={e => onClick(e)} variant="contained" startIcon={<ArticleIcon />}>

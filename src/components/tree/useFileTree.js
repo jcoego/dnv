@@ -1,5 +1,9 @@
 import { useState } from "react";
 
+import axios from 'axios';
+
+import {getServerUrl}  from '../../utils/config';
+
 let treeExample = {
     '*path':'c',
     '*type':'directory',
@@ -54,10 +58,12 @@ let treeExample = {
   }
 
 const useFileTree = ()=>{
-    let [selectedNode, setSelectedNode] = useState('');
-    let [tree,setTree] = useState(treeExample);
-    let [expanded, setExpanded] = useState([]);
-    let [searchField, setSearchField] = useState('')
+    const [selectedNode, setSelectedNode] = useState('');
+    const [tree,setTree] = useState(treeExample);
+    const [expanded, setExpanded] = useState([]);
+    const [searchField, setSearchField] = useState('');
+    const [queryState, setQueryState] = useState({result:null,error:null, loading:false})
+    
 
     //functions
     const onNodeToggle= (e,nodeIds) =>{
@@ -68,14 +74,31 @@ const useFileTree = ()=>{
         setSearchField(data);
     }
 
+    const onClickSearch = async ()=>{
+        //TODO: Validation
+        try{
+            setQueryState(prevState => ({...prevState,loading:true}))
+            let dataFromServer=null; 
+            dataFromServer = await axios.get(`${getServerUrl()}?path${searchField ? searchField : '/'}`);
+            setQueryState(prevState => 
+                ({...prevState,error:null,result:dataFromServer}))
+        }catch(err){
+            setQueryState(prevState => 
+                ({...prevState,error:err.message ? err.message : 'Error retrieving data',result:null}))
+
+        }finally{
+            setQueryState(prevState => ({...prevState,loading:false}))
+        }
+
+    }
+
    
 
 
     return[selectedNode, setSelectedNode, 
         tree, setTree, onNodeToggle, 
         expanded, setExpanded,
-        onChangeSearchField,
-        searchField
+        onChangeSearchField, searchField, onClickSearch, queryState
     ]
 
 }

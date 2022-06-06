@@ -73,19 +73,24 @@ const FileTreeView = ({tree, onClick=()=>{},
         );
     }
 
-    console.log('selected',selected)
+
     return <div>
-        <TreeView
-          selected={[selected]}
-          onNodeToggle={onNodeToggle}
-         
-          expanded={expanded} 
-          onNodeSelect={(e,nodeIds)=> console.log('nodeIds',nodeIds)}
-          /* 
-          onNodeSelect={handleSelect} */
-        >
-            {renderTree(tree)}
-        </TreeView>
+      {tree ?
+        (<TreeView
+        selected={[selected]}
+        onNodeToggle={onNodeToggle}
+       
+        expanded={expanded} 
+        onNodeSelect={(e,nodeIds)=> console.log('nodeIds',nodeIds)}
+        /* 
+        onNodeSelect={handleSelect} */
+      >
+          {renderTree(tree)}
+      </TreeView>) :
+      <h3>No data</h3>
+
+      }
+        
     </div>
 }
 
