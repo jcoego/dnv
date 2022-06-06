@@ -65,7 +65,7 @@ const FilePreview = ({url='',fileName='', size='',type='',path='', onClick=()=>{
     let fileType =  isFileImgOrTxt(extensionFile);
    
 
-    if(!fileName) return null;
+    if(!fileName) return <h2>No Path selected</h2>;
    
     if (fileType==='img'){
       return <PreviewImage 
