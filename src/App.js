@@ -65,7 +65,6 @@ function App() {
         type={selectedNode ? selectedNode['*type'] : ''} 
         onClick={(url)=> downloadFile(url)} 
         />
-      
     </Layout>
   );
 }

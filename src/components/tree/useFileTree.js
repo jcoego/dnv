@@ -16,15 +16,17 @@ let treeExample = {
             '*name':'procesos de logistica',
             '*size':100,
             'gestion del almacén.doc':{
+                '*url':'https://firebasestorage.googleapis.com/v0/b/development-environment-7fe5c.appspot.com/o/dnv%2FPruebaDNV.docx?alt=media&token=b55e0195-45bb-45c6-b517-6add16f15e18',
                 '*path':'c/myfiles/procesos de logistica/gestion del almacén.doc',
                 '*type':'file',
                 '*name':'gestion del almacén.doc',
                 '*size':100,
             },
-            'inventario de salida.xls':{
-                '*path':'c/myfiles/procesos de logistica/inventario de salida.xls',
+            'inventario de salida.pdf':{
+                '*url':'https://firebasestorage.googleapis.com/v0/b/development-environment-7fe5c.appspot.com/o/dnv%2FPruebaDNVPDF.pdf?alt=media&token=5a7e3b6e-0c41-4ca8-9ccb-11f592bde269',
+                '*path':'c/myfiles/procesos de logistica/inventario de salida.pdf',
                 '*type':'file',
-                '*name':'inventario de salida.xls',
+                '*name':'inventario de salida.pdf',
                 '*size':100,
             },
             'imagen1.jpg':{
