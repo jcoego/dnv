@@ -43,7 +43,6 @@ export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
         pathItems=pathItems.slice(1,pathItems.length).join('.');
         let currentNodeValue= _.get(tree,pathItems)
         let treeRes = _.set(tree,pathItems,{...newNode,...currentNodeValue});
-        debugger
         return treeRes;
     }catch(err){
         return tree;
