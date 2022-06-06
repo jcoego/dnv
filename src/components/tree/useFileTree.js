@@ -101,22 +101,30 @@ const useFileTree = ()=>{
     const onClickSearchNode = async (node)=>{
         
     
-          
-            let path = node['*path'];
-           
-            let dataFromServer=null; 
-            
-            dataFromServer = await axios.get(`${getServerUrl()}?path=${path}`);
-            
-          /*   setQueryState(prevState => 
-                ({...prevState,error:null, result:dataFromServer ? dataFromServer.data : ''})) */
+            try{
+              //query data from database
+              setQueryState(prevState => ({...prevState,loading:true}))
+              let path = node['*path'];
+              let dataFromServer=null; 
+              
+              dataFromServer = await axios.get(`${getServerUrl()}?path=${path}`);
+              
+              setQueryState(prevState => 
+                  ({...prevState,error:null, result:dataFromServer ? dataFromServer.data : ''}))
 
-            
-            let newTree= insertNodeInTree(tree, dataFromServer.data,node['*path'])
-            
-            setTree(newTree);
-            setSelectedNode(node);
-            setExpanded([...expanded,node['*path']])
+              
+              let newTree= insertNodeInTree(tree, dataFromServer.data,node['*path'])
+              
+              setTree(newTree);
+              setSelectedNode(node);
+              setExpanded([...expanded,node['*path']])
+            }catch(err){
+              setQueryState(prevState => 
+                ({...prevState,error:err.message ? err.message : 'Error retrieving data',result:null}))
+
+            }finally{
+              setQueryState(prevState => ({...prevState,loading:false}))
+            }
        
     }
 

@@ -23,8 +23,6 @@ function App() {
     onChangeSearchField,searchField,  onClickSearch, queryState, onClickSearchNode
   ] = useFileTree();
 
-  console.log('tree',tree)
-
   return (
     <Layout>
       <Loading open={queryState.loading} />
