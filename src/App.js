@@ -6,6 +6,7 @@ import TreeItem from '@mui/lab/TreeItem';
 
 import Layout from './components/common/Layout';
 import FileTreeView from './components/tree/FileTreeView';
+import TreeSearcher from './components/tree/TreeSearcher';
 import FilePreview from './components/tree/FilePreview';
 import useFileTree from './components/tree/useFileTree';
 import Separator from './components/common/Separator';
@@ -15,13 +16,20 @@ import {downloadFile, insertNodeInTree}  from './utils/utils';
 
 function App() {
 
-  let [selectedNode, setSelectedNode,tree, setTree, onNodeToggle, expanded, setExpanded] = useFileTree();
-
- 
-  
+  let [selectedNode, setSelectedNode,
+    tree, setTree, 
+    onNodeToggle, expanded, setExpanded,
+    onChangeSearchField,searchField
+  ] = useFileTree();
 
   return (
     <Layout>
+      <TreeSearcher 
+        onChange={e => onChangeSearchField(e.target.value)}
+        value={searchField}
+        onClick={()=>{}}
+      />
+      <Separator />
       <FileTreeView 
         onNodeToggle={onNodeToggle} expanded={expanded} 
         selected={selectedNode['*path']} tree={tree} onClick={node => {  

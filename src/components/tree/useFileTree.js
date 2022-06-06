@@ -57,16 +57,26 @@ const useFileTree = ()=>{
     let [selectedNode, setSelectedNode] = useState('');
     let [tree,setTree] = useState(treeExample);
     let [expanded, setExpanded] = useState([]);
+    let [searchField, setSearchField] = useState('')
 
     //functions
     const onNodeToggle= (e,nodeIds) =>{
         setExpanded(nodeIds)
     }
 
+    const onChangeSearchField = (data) =>{
+        setSearchField(data);
+    }
+
    
 
 
-    return[selectedNode, setSelectedNode, tree, setTree, onNodeToggle, expanded, setExpanded]
+    return[selectedNode, setSelectedNode, 
+        tree, setTree, onNodeToggle, 
+        expanded, setExpanded,
+        onChangeSearchField,
+        searchField
+    ]
 
 }
 
