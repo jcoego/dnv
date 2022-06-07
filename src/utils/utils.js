@@ -1,6 +1,6 @@
 import { treeViewClasses } from '@mui/lab/TreeView';
 import _ from 'lodash';
-import { FILE_IMG_EXTENSIONS } from "./config";
+import { FILE_IMG_EXTENSIONS, COMMON_FIELDS } from "./config";
 
 //return keys of array excluding some of them.
 export const objectKeys = (obj, excludedArray) =>{
@@ -55,6 +55,7 @@ export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
 //check if data is in local tree
 export const checkPathLocally = (tree, node) =>{
     try{
+      
       let path = node['*path'];
       path = path.replace(/[.]/g, ' ');
       path = path.replace(tree['*path'],'');
@@ -62,8 +63,37 @@ export const checkPathLocally = (tree, node) =>{
       pathItems = pathItems.filter(pIt => !!pIt);
       pathItems=pathItems.join('.');
       let currentNode = _.get(tree,pathItems);
-      return currentNode ? true :  false;
+      if(!currentNode) return false;
+      let keysCurrentNode = Object.keys(currentNode);
+      for(let keysCurrentNodeItem of keysCurrentNode){
+        if(COMMON_FIELDS.indexOf(keysCurrentNodeItem)===-1){
+          return true;
+        }
+      }
+      return false;
+
     }catch(err){
       return false;
     }
+}
+
+//check if directory is expanded
+export const checkDirExpanded = (expandedNodes, node) =>{
+  if(node['*type']!=='directory') return false;
+  let path = node['*path'];
+  if(!expandedNodes || expandedNodes.length < 1 || !path) return false;
+  if(expandedNodes.indexOf(path)!==-1) return true;
+}
+
+//compress directory
+export const compressDirectory = (expandedNodes, node) =>{
+  try{
+    let expanded = [...expandedNodes];
+    let path = node['*path'];
+    expanded = expanded.filter(exp => exp!==path);
+    return expanded;
+  }catch(err){
+    return expandedNodes;
+  }
+
 }

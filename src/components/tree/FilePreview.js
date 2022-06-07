@@ -105,38 +105,6 @@ const FilePreview = ({url='',fileName='', size='',type='',path='', onClick=()=>{
       </div>
 
     )
-   
-   /*  if (fileType==='img'){
-      return <PreviewImage 
-        path={path}
-        url={url} 
-        fileName={fileName} 
-        size={size} 
-        type={type} 
-        onClick={(url)=>onClick(url)} 
-      />
-    }
-
-    if (fileType==='txt'){
-      return <PreviewText 
-        path={path}
-        url={url} 
-        fileName={fileName} 
-        size={size} 
-        type={type} 
-        onClick={(url)=>onClick(url)} 
-      />
-    }
-
-    return (<PeviewFileNotImgNotTxt 
-      path={path}
-      url={url} 
-      fileName={fileName} 
-      size={size} 
-      type={type} 
-      onClick={(url)=>onClick(url)} 
-    />) */
-
 }
 
 export default FilePreview;

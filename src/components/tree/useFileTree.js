@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 import {getServerUrl}  from '../../utils/config';
-import {insertNodeInTree, checkPathLocally} from '../../utils/utils'
+import {insertNodeInTree, checkPathLocally, checkDirExpanded} from '../../utils/utils'
 
 let treeExample = {
     '*path':'c',
@@ -102,14 +102,16 @@ const useFileTree = ()=>{
         
     
             try{
-              //check if data is in cache
-              /* let isPathLocally = checkPathLocally(tree,node['*path']);
+              //check if data is in cache: if it is, we dont send request to server.
+              let isDirExpanded = checkDirExpanded(expanded, node);
+              console.log('isDirExpanded',isDirExpanded);
+              let isPathLocally = checkPathLocally(tree,node);
               if(isPathLocally){
                 console.log('PATH LOCALLY')
                 setSelectedNode(node);
                 setExpanded([...expanded,node['*path']])
                 return;
-              } */
+              } /**/
               //query data from database
               setQueryState(prevState => ({...prevState,loading:true}))
               let path = node['*path'];
