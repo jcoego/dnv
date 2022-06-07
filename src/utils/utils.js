@@ -40,6 +40,8 @@ export const downloadFile = (url) =>{
 export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
     try{
         debugger
+        path = path.replace(/[.]/g, ' ');
+        path = path.replace(tree['*path'],'');
         let pathItems = path.split('/')
         pathItems=pathItems.slice(1,pathItems.length).join('.');
         let currentNodeValue= _.get(tree,pathItems)

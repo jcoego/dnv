@@ -13,30 +13,30 @@
             "*type":"directory",
             "*name":"procesos de logistica",
             "*size":100,
-            "gestion del almacén.doc":{
+            "gestion del almacén doc":{
                 "*url":"https://firebasestorage.googleapis.com/v0/b/development-environment-7fe5c.appspot.com/o/dnv%2FPruebaDNV.docx?alt=media&token=b55e0195-45bb-45c6-b517-6add16f15e18",
                 "*path":"/myfiles/procesos de logistica/gestion del almacén.doc",
                 "*type":"file",
                 "*name":"gestion del almacén.doc",
                 "*size":100
             },
-            "inventario de salida.pdf":{
+            "inventario de salida pdf":{
                 "*url":"https://firebasestorage.googleapis.com/v0/b/development-environment-7fe5c.appspot.com/o/dnv%2FPruebaDNVPDF.pdf?alt=media&token=5a7e3b6e-0c41-4ca8-9ccb-11f592bde269",
-                "*path":"/myfiles/procesos de logistica/inventario de salida.pdf",
+                "*path":"/myfiles/procesos de logistica/inventario de salida pdf",
                 "*type":"file",
                 "*name":"inventario de salida.pdf",
                 "*size":100
             },
-            "imagen1.jpg":{
+            "imagen1 jpg":{
                 "*url":"https://firebasestorage.googleapis.com/v0/b/development-environment-7fe5c.appspot.com/o/dnv%2Fimagen1.jpg?alt=media&token=b286577a-ebcc-4201-a1fa-e3d6a974b20b",
-                "*path":"/myfiles/procesos de logistica/imagen1.jpg",
+                "*path":"/myfiles/procesos de logistica/imagen1 jpg",
                 "*type":"file",
                 "*name":"imagen1.jpg",
                 "*size":100
             },
-            "readme.txt":{
+            "readme txt":{
                 "*url":"https://firebasestorage.googleapis.com/v0/b/development-environment-7fe5c.appspot.com/o/dnv%2Ftexto1.txt?alt=media&token=c8240d83-d2f8-405b-9eb2-1b8a60e3d3a7",
-                "*path":"/myfiles/procesos de logistica/readme.txt",
+                "*path":"/myfiles/procesos de logistica/readme txt",
                 "*type":"file",
                 "*name":"readme.txt",
                 "*size":100
