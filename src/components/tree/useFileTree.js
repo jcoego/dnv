@@ -101,14 +101,16 @@ const useFileTree = ()=>{
     const onClickSearchNode = async (node)=>{
         
             try{
-              //check if data is in cache: if it is, we dont send request to server.
+              
+              //check if path is expanded.
               let isDirExpanded = checkDirExpanded(expanded, node);
               if(isDirExpanded){
                 let newExpanded = compressDirectory(expanded, node);
                 setExpanded(newExpanded);
                 return;
               }
-              console.log('isDirExpanded',isDirExpanded);
+            
+              //check if data is in cache: if it is, we dont send request to server.
               let isPathLocally = checkPathLocally(tree,node);
               if(isPathLocally){
                 console.log('PATH LOCALLY')
