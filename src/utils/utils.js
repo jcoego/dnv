@@ -42,11 +42,11 @@ export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
         debugger
         path = path.replace(/[.]/g, ' ');
         path = path.replace(tree['*path'],'');
-        let pathItems = path.split('/')
-        pathItems=pathItems.slice(1,pathItems.length).join('.');
+        let pathItems = path.split('/');
+        pathItems = pathItems.filter(pIt => !!pIt);
+        pathItems=pathItems.join('.');
         let currentNodeValue= _.get(tree,pathItems)
         let treeRes = currentNodeValue ? _.set(tree,pathItems,{...newNode,...currentNodeValue}) : newNode;
-        console.log('treeRes',treeRes)
         return treeRes;
     }catch(err){
         return tree;

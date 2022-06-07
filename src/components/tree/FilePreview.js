@@ -47,7 +47,7 @@ const PreviewText = ({url='', fileName='', size='', type='',path='', onClick=()=
           <h2>{path}</h2>
          
           <object data={url} height="200px">
-            <iframe src={url} frameborder="0" height="200px"
+            <iframe src={url} frameBorder="0" height="200px"
             ></iframe>
           </object>
           <div>{`size: ${size} MB`}</div>

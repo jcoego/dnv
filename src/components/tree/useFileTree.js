@@ -108,7 +108,8 @@ const useFileTree = ()=>{
               let dataFromServer=null; 
               
               dataFromServer = await axios.get(`${getServerUrl()}?path=${path}`);
-              
+              console.log('dataFromServer_SearchNode', dataFromServer);
+
               setQueryState(prevState => 
                   ({...prevState,error:null, result:dataFromServer ? dataFromServer.data : ''}))
 
