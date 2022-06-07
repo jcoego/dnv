@@ -103,7 +103,8 @@ export const compressDirectory = (expandedNodes, node) =>{
   try{
     let expanded = [...expandedNodes];
     let path = node['*path'];
-    expanded = expanded.filter(exp => exp!==path);
+    //expanded = expanded.filter(exp => exp!==path);
+    expanded = expanded.filter(exp => exp.indexOf(path)===-1)
     return expanded;
   }catch(err){
     return expandedNodes;

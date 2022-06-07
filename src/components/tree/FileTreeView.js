@@ -46,7 +46,7 @@ const FileTreeView = ({tree, onClick=()=>{},
         onNodeToggle={onNodeToggle}
        
         expanded={expanded} 
-        onNodeSelect={(e,nodeIds)=> console.log('nodeIds',nodeIds)}
+        onNodeSelect={(e,nodeIds)=> console.log('')}
         /* 
         onNodeSelect={handleSelect} */
       >

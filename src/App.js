@@ -24,6 +24,8 @@ function App() {
     onChangeSearchField,searchField,  onClickSearch, queryState, onClickSearchNode
   ] = useFileTree();
 
+  console.log('expanded',expanded)
+
   return (
     <Layout>
       <Loading open={queryState.loading} />
@@ -38,31 +40,7 @@ function App() {
       <Separator />
       <FileTreeView 
         onNodeToggle={onNodeToggle} expanded={expanded} 
-        selected={selectedNode['*path']} tree={tree} onClick={node => onClickSearchNode(node) /* {  
-         
-       
-            if(node['*path']==='c/documents'){
-             
-              let newTree =   insertNodeInTree(tree,{'videos':{ 
-                '*path':'c/documents/videos',
-                '*type':'directory',
-                '*name':'videos',
-                '*size':110,
-              }},'c/documents');
-
-            
-              setTree(newTree);
-              setSelectedNode(node);
-            
-              setExpanded([...expanded,node['*path']])
-              return
-             
-            }else{
-              setSelectedNode(node);
-            }
-          } */
-        }
-        />
+        selected={selectedNode['*path']} tree={tree} onClick={node => onClickSearchNode(node) }/>
       <Separator />
       <FilePreview url={selectedNode ? selectedNode['*url'] : ''}
         path={selectedNode ? selectedNode['*path'] : ''}   

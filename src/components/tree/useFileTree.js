@@ -38,7 +38,9 @@ const useFileTree = ()=>{
             setQueryState(prevState => 
                 ({...prevState,error:null, result: 'Query executed successfully'}))
             
-            setTree(dataFromServer ? dataFromServer.data : '')
+            setTree(dataFromServer ? dataFromServer.data : '');
+            setSelectedNode('');
+            setExpanded([])
         }catch(err){
             setQueryState(prevState => 
                 ({...prevState,error:err.message ? err.message : 'Error retrieving data',result:null}))
@@ -57,6 +59,7 @@ const useFileTree = ()=>{
               let isDirExpanded = checkDirExpanded(expanded, node);
               if(isDirExpanded){
                 let newExpanded = compressDirectory(expanded, node);
+                setSelectedNode(node);
                 setExpanded(newExpanded);
                 return;
               }
@@ -64,18 +67,17 @@ const useFileTree = ()=>{
               //check if data is in cache: if it is, we dont send request to server.
               let isPathLocally = checkPathLocally(tree,node);
               if(isPathLocally){
-                console.log('PATH LOCALLY')
                 setSelectedNode(node);
                 setExpanded([...expanded,node['*path']])
                 return;
-              } /**/
+              } 
               //query data from database
               setQueryState(prevState => ({...prevState,error: null, result: null,loading:true}))
               let path = node['*path'];
               let dataFromServer=null; 
               
               dataFromServer = await axios.get(`${getServerUrl()}?path=${path}`);
-              if(checkEmptyObject(dataFromServer ? dataFromServer.data : {})) throw new Error('No data received')
+              //if(checkEmptyObject(dataFromServer ? dataFromServer.data : {})) throw new Error('No data received')
         
 
               setQueryState(prevState => 
