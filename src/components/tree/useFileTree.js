@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 import {getServerUrl}  from '../../utils/config';
-import {insertNodeInTree, checkPathLocally, checkDirExpanded} from '../../utils/utils'
+import {insertNodeInTree, checkPathLocally, checkDirExpanded, compressDirectory} from '../../utils/utils'
 
 let treeExample = {
     '*path':'c',
@@ -100,10 +100,14 @@ const useFileTree = ()=>{
 
     const onClickSearchNode = async (node)=>{
         
-    
             try{
               //check if data is in cache: if it is, we dont send request to server.
               let isDirExpanded = checkDirExpanded(expanded, node);
+              if(isDirExpanded){
+                let newExpanded = compressDirectory(expanded, node);
+                setExpanded(newExpanded);
+                return;
+              }
               console.log('isDirExpanded',isDirExpanded);
               let isPathLocally = checkPathLocally(tree,node);
               if(isPathLocally){
