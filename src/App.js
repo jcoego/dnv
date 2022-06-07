@@ -13,6 +13,7 @@ import Separator from './components/common/Separator';
 import Loading from './components/common/Loading';
 
 import {downloadFile, insertNodeInTree}  from './utils/utils';
+import Feedback  from './components/common/Feedback';
 
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
         onClick={(e)=>onClickSearch()}
         error={queryState.error}
       />
+      <br/>
+      <Feedback type={(queryState && queryState.error) ? 'error' : 'success'} message={queryState.error || queryState.result} />
       <Separator />
       <FileTreeView 
         onNodeToggle={onNodeToggle} expanded={expanded} 

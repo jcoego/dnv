@@ -20,6 +20,19 @@ export const objectKeys = (obj, excludedArray) =>{
     }
 }
 
+//check if object is empty
+export const checkEmptyObject = (obj) =>{
+  try{
+    
+    if(!obj) return true;
+    let objKeys = Object.keys(obj);
+    if(!objKeys) return true;
+    return objKeys.length === 0 ? true : false
+  }catch(err){
+    return true;
+  }
+}
+
 //is file an image or txt.
 export const isFileImgOrTxt = (fileExtension) =>{
     if(!fileExtension) return null;
