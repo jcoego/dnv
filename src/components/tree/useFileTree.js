@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from 'axios';
 
 import {getServerUrl}  from '../../utils/config';
-import {insertNodeInTree} from '../../utils/utils'
+import {insertNodeInTree, checkPathLocally} from '../../utils/utils'
 
 let treeExample = {
     '*path':'c',
@@ -60,7 +60,7 @@ let treeExample = {
 
 const useFileTree = ()=>{
     const [selectedNode, setSelectedNode] = useState('');
-    const [tree,setTree] = useState(treeExample);
+    const [tree,setTree] = useState({});
     const [expanded, setExpanded] = useState([]);
     const [searchField, setSearchField] = useState('');
     const [queryState, setQueryState] = useState({result:null,error:null, loading:false})
@@ -102,6 +102,14 @@ const useFileTree = ()=>{
         
     
             try{
+              //check if data is in cache
+              /* let isPathLocally = checkPathLocally(tree,node['*path']);
+              if(isPathLocally){
+                console.log('PATH LOCALLY')
+                setSelectedNode(node);
+                setExpanded([...expanded,node['*path']])
+                return;
+              } */
               //query data from database
               setQueryState(prevState => ({...prevState,loading:true}))
               let path = node['*path'];

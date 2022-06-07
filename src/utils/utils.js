@@ -39,7 +39,6 @@ export const downloadFile = (url) =>{
 //insert node inside the tree
 export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
     try{
-        debugger
         path = path.replace(/[.]/g, ' ');
         path = path.replace(tree['*path'],'');
         let pathItems = path.split('/');
@@ -51,5 +50,20 @@ export const insertNodeInTree = (tree={}, newNode={}, path='')=>{
     }catch(err){
         return tree;
     }
+}
 
+//check if data is in local tree
+export const checkPathLocally = (tree, node) =>{
+    try{
+      let path = node['*path'];
+      path = path.replace(/[.]/g, ' ');
+      path = path.replace(tree['*path'],'');
+      let pathItems = path.split('/');
+      pathItems = pathItems.filter(pIt => !!pIt);
+      pathItems=pathItems.join('.');
+      let currentNode = _.get(tree,pathItems);
+      return currentNode ? true :  false;
+    }catch(err){
+      return false;
+    }
 }

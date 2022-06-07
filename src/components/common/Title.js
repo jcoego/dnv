@@ -1,8 +1,8 @@
 
 
-const Title = ( {message}) =>{
+const Title = ( {message, style={}}) =>{
 
-    return <h2>{message}</h2>
+    return <h2 style={style}>{message}</h2>
 }
 
 export default Title;

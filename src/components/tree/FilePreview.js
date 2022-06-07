@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 
 import { isFileImgOrTxt } from "../../utils/utils";
+import Title from '../common/Title';
 
 const PeviewFileNotImgNotTxt = ({url='', fileName='', size='', type='', path='', onClick=()=>{}}) =>{
     return (
@@ -63,11 +64,49 @@ const FilePreview = ({url='',fileName='', size='',type='',path='', onClick=()=>{
     let extensionFile = fileName ? fileName.split('.').pop() : '';
    
     let fileType =  isFileImgOrTxt(extensionFile);
-   
+  
 
-    if(!fileName) return <h2>No Path selected</h2>;
+    return (
+      <div>
+        <Title message={'PREVIEW (IMAGES AND TXT)'} style={{backgroundColor:'#efe5e5', padding:'5px', borderRadius:'5px'}}/>
+        {
+          !fileName && <h4>No path selected</h4>
+        }
+        {
+          fileType==='img' && <PreviewImage 
+            path={path}
+            url={url} 
+            fileName={fileName} 
+            size={size} 
+            type={type} 
+            onClick={(url)=>onClick(url)} 
+          />
+        }
+         {
+          fileType==='txt' && <PreviewText 
+            path={path}
+            url={url} 
+            fileName={fileName} 
+            size={size} 
+            type={type} 
+            onClick={(url)=>onClick(url)} 
+          />
+        }
+        {
+          (fileName && fileType!=='img' && fileType!=='txt') && <PeviewFileNotImgNotTxt 
+            path={path}
+            url={url} 
+            fileName={fileName} 
+            size={size} 
+            type={type} 
+            onClick={(url)=>onClick(url)} 
+          />
+        }
+      </div>
+
+    )
    
-    if (fileType==='img'){
+   /*  if (fileType==='img'){
       return <PreviewImage 
         path={path}
         url={url} 
@@ -96,7 +135,7 @@ const FilePreview = ({url='',fileName='', size='',type='',path='', onClick=()=>{
       size={size} 
       type={type} 
       onClick={(url)=>onClick(url)} 
-    />)
+    />) */
 
 }
 

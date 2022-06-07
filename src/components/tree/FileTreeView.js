@@ -5,6 +5,7 @@ import TreeItem from '@mui/lab/TreeItem';
 
 import { objectKeys } from "../../utils/utils";
 import { COMMON_FIELDS } from '../../utils/config';
+import Title from '../common/Title';
 
 //TODO: Delete treeExample
 let treeExample = {
@@ -75,6 +76,7 @@ const FileTreeView = ({tree, onClick=()=>{},
 
 
     return <div>
+      <Title message={'File Tree'} style={{backgroundColor:'#efe5e5', padding:'5px', borderRadius:'5px'}} />
       {tree ?
         (<TreeView
         selected={[selected]}
